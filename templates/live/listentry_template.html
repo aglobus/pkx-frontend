@@ -1,0 +1,14 @@
+<li id=<%= id %>>
+  <a href="#live/<%= id %>">
+    
+<% if (!connected) { %>
+  <img src="img/red.png" />  
+<% } else if (!actions.log.enabled) { %>      
+  <img src="img/yellow.png" />
+<% } else { %>
+  <img src="img/green.png" />      
+<% }%>
+    
+    <%= description ? description : "Serial #" + id %> 
+  </a>
+</li>

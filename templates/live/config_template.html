@@ -1,0 +1,120 @@
+<div id="alert-area"></div>
+
+<div class="row-fluid">
+  <% if (connected) { %>
+    <% $("#fftplot").show()%>
+  <div class="span8">
+    <form class="form-horizontal" name="config_form">
+
+      <% if (!actions.log.enabled) {%>
+      <div class="control-group">
+        <div class="controls redalert">
+          This sensor is not logging any data
+        </div>
+      </div>
+      <% } %>
+
+
+      <div class="control-group">
+        <label class="control-label">Name</label>
+        <div class="controls">
+          <input id="description" class="input-large" type="text" value="<%= description %>" data-constraints= '@Length(min=0,max=30, label="Description")'>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <label class="control-label">Fiber Sensitivity</label>
+        <div class="controls">
+        	<section>	
+        	  <div id="hwgain" class="slider"></div>
+        	  <span class="val" style="margin-left: 10px"><%=hwgain %></span>
+        	</section>
+        </div>
+        
+      </div>
+      <div class="control-group">
+        <label class="control-label">Event Averaging</label>
+        <div class="controls">
+        	<section>	
+        	  <div id="eventTime" class="slider"></div>
+        	  <span class="val" style="margin-left: 10px"><%=eventTime %> seconds</span>
+        	</section>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <label class="control-label">Event:Alarm Ratio</label>
+        <div class="controls">
+        	<section>	
+        	  <div id="eventsToTriggerAlarm" class="slider"></div>
+        	  <span class="val" style="margin-left: 10px"><%=eventsToTriggerAlarm %> : 1</span>
+        	</section>
+        </div>
+      </div>
+      
+      
+      <div class="control-group">
+        <label class="control-label">Wind Filter</label>
+        <div class="controls">
+        	<section>	
+        	  <div id="attenuation" class="slider"></div>
+        	  <span class="val" style="margin-left: 10px"><%=attenuation %></span>
+        	</section>
+        </div>
+      </div>
+      
+      
+      <!-- <div class="control-group">
+        <label class="control-label">Re-trigger Time</label>
+        <div class="controls">
+          <section> 
+            <div id="secondsToAlarm" class="slider"></div>
+            <span class="label" style="margin-left: 10px"><%=secondsToAlarm %> Seconds</span>
+          </section>
+        </div>
+      </div> -->
+      
+      
+      <div class="control-group">
+        <div class="controls">
+          <!-- Not standard form, should be reset and submit for type -->
+          <!-- <input id="getValues" type="button" class="btn" value="Get Config">  -->
+          <input id="setValues" type="button" class="btn" value="Apply Settings">
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="span4">
+    <div id="status"></div>
+    <p>
+      <b>Serial Number:</b> <%= id %>
+    </p>
+  </div>
+  
+  <% } else { %>
+    <% $("#fftplot").hide()%>
+    
+    <div class="span4">
+    </div>
+    
+    <div class="span8">
+      <p>
+      This sensor is not connected
+    </p>
+    <input id="deleteSensor" style="margin-left:11px" type="button" class="btn" value="Delete Configuration">
+    
+    </div>
+    
+  <% } %>
+  
+</div>
+    
+    <!-- 
+    // Audio test
+    // if (JSON.parse($("#soundswitch").attr('value'))) {
+    //   var audio = document.getElementById("audio");
+    //   audio.play();
+    // }
+     -->

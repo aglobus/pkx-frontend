@@ -1,0 +1,63 @@
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+        <th>&nbsp;</th>
+        <th>Log Data</th>
+      <th>Text Message</th>
+      <th>Play Sound</th>
+      <th>Relay 1 (N.C.)</th>
+      <th>Relay 2 (N.O.)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% collection.each(function(sensor) { %>
+      <% if (sensor.get('connected'))%>
+          <tr id=<%= sensor.get('id') %> >
+              <th>
+                <%= (sensor.get('description') === "") ? sensor.get('id') : sensor.get('description') %>
+              </th>
+              <td>
+                <label class="switch_wrap" style="width:67px;">
+                    <input type="checkbox" id="log" <%= (sensor.get('actions').log.enabled) ? "checked" : "" %>>
+                    <div class="switch">
+                        <span class="bullet"/>
+                    </div>
+                </label>
+              </td>
+              <td>
+                <label class="switch_wrap" style="width:67px;">
+                    <input type="checkbox" id="textmessage" <%= (sensor.get('actions').textmessage.enabled) ? "checked" : "" %>>
+                    <div class="switch">
+                        <span class="bullet"/>
+                    </div>
+                </label>
+              </td>
+              <td>
+                <label class="switch_wrap" style="width:67px;">
+                    <input type="checkbox" id="sound" <%= (sensor.get('actions').sound.enabled) ? "checked" : "" %>>
+                    <div class="switch">
+                        <span class="bullet"/>
+                    </div>
+                </label>
+              </td>
+              <td>
+                <label class="switch_wrap" style="width:67px;">
+                    <input type="checkbox" id="relay1" <%= (sensor.get('actions').relay1.enabled) ? "checked" : "" %>>
+                    <div class="switch">
+                        <span class="bullet"/>
+                    </div>
+                </label>
+              </td>
+              <td>
+                <label class="switch_wrap" style="width:67px;">
+                    <input type="checkbox" id="relay2" <%= (sensor.get('actions').relay2.enabled) ? "checked" : "" %>>
+                    <div class="switch">
+                        <span class="bullet"/>
+                    </div>
+                </label>
+              </td>  
+          </tr>          
+
+    <% }); %>
+  </tbody>
+</table>  

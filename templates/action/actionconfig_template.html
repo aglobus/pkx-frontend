@@ -1,0 +1,51 @@
+<div class="row-fluid">
+  <div class="span7">
+    <form class="form-horizontal" name="config_form">
+      Message will be sent to the following phone #s:
+      <ul>
+        <% for (number in actions.textmessage.numbers) { %>
+        <li style="display:inline-block;">
+          <a class="delete"style="display:inline-block;margin-right:10px;">
+            <img src="/img/delete.png" /> 
+          </a>
+           <%= actions.textmessage.numbers[number] %> 
+         </li>
+         <br>
+        <% } %>
+      </ul>
+
+      <div class="control-group">
+        <div class="input-append">
+          <input class="span6" id="inputnumberfield" type="text"  <%= actions.textmessage.enabled ? "" : "disabled" %>>
+          <!--<button class="btn" type="button" id="inputnumber">Add #</button>-->
+          <input class="btn" type="button" id="inputnumber" value="Add Phone #"></input>
+        </div>
+      </div>
+      
+    </form>
+  </div>
+  <div class="span5">
+    <form class="form-horizontal" name="config_form">
+      <div class="control-group">
+        <label class="control-label">Relay 1 on-time</label>
+        <div class="controls">
+          <input id="relay1-value" class="span4" type="text" data-constraints = '@NotEmpty(label="Relay 1 On-Time") @Real(label="Relay 1 On-Time") @Between(min=1, max=60, label="Relay 1 On-Time")' <%= actions.relay1.enabled ? "" : "disabled" %> value=<%= actions.relay1.ontime %>>
+          seconds (1-60)
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <label class="control-label">Relay 2 on-time</label>
+        <div class="controls">
+          <input id="relay2-value" class="span4" type="text" data-constraints = '@NotEmpty(label="Relay 2 On-Time") @Real(label="Relay 2 On-Time") @Between(min=1, max=60, label="Relay 2 On-Time")' <%= actions.relay2.enabled ? "" : "disabled" %> value=<%= actions.relay2.ontime %>>
+          seconds (1-60)
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <input id="saveRelays" type="button" class="btn" value="Apply Relay Time">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
